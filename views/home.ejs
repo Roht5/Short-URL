@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            background-image: url('https://e1.pxfuel.com/desktop-wallpaper/158/660/desktop-wallpaper-black-backgrounds-black-website-background.jpg');
+            font-family: 'Open Sans', sans-serif;
+            /* background-color: #f2f2f2; */
+            background-size: cover;
+            background-position: center center;
+            padding: 20px;
+        }
+
+        .url-form {
+            width: 400px;
+            align-items: center;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .url-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .url-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .url-form button {
+            /* width: 100%; */
+            padding: 10px;
+            align-self: center;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .url-form button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            color: white;
+            width: 100%;
+            border-color: black;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            color: black;
+            background-color: #f2f2f2;
+        }
+
+        .short-id {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .container {
+  display: flex;
+}
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;color: white;">Rohit's Website</h1>
+    <div class="container">
+        <div class="url-form">
+            <h2>Shorten Your URLs</h2>
+            <form action="/url" method="POST">
+                <label>Enter Original URL</label><h6></h6>
+                <input type="text" name="url" placeholder="Enter URL" required>
+                <h6></h6><button type="submit">Shorten</button>
+            </form>
+        </div>
+        <div class="url-form">
+            <h2>File Uploader</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <label>Upload Your File</label><h6></h6>
+                <input type="file" name="avatar" required>
+                <h2></h2>
+                <button type="submit">Upload</button>
+              </form>
+        </div>
+      </div>
+    
+
+    <table>
+        <tr>
+            <th>Sr. No</th>
+            <th>Short ID</th>
+            <th>Redirected URL</th>
+            <th>Clicks</th>
+        </tr>
+        <% urls?.forEach(function(url, index) { %>
+            <tr>
+                <td><%= index + 1 %></td>
+                <td><a href="read/<%= url.shortId %>" class="short-id"><%= url.shortId %></a></td>
+                <td><%= url.redirectedURL %></td>
+                <td><%= url.visitHistory.length %></td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>

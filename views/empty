@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .url-form {
+            width: 300px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+        .url-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .url-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+        }
+        .url-form button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>URL Shortner</h1>
+    <div class="url-form">
+        <form action="/url" method="POST">
+            <label>Enter Original URl</label>
+            <h6></h6>
+            <input type="text" name="url" placeholder="Enter URL" required>
+            <h5></h5><button type="submit">Submit</button>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>Sr. No</th>
+            <th>Short ID</th>
+            <th>Redirected ID</th>
+            <th>Clicks</th>
+        </tr>
+        <% urls.forEach(function(url,index) { %>
+            <tr>
+                <td><%= index+1 %></td>
+                <td><%= url.shortId %></td>
+                <td><%= url.redirectedURL %></td>
+                <td><%= url.visitHistory.length %></td>
+            </tr>
+        <% }); %>
+    </table>
+</body>
+</html>
